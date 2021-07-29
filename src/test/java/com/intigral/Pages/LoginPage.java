@@ -6,6 +6,19 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class LoginPage extends CommonActions {
 
+    public static LoginPage instance;
+
+    public static LoginPage getInstance() {
+        if(instance == null){
+            synchronized (LoginPage.class){
+                if(instance == null){
+                    instance= new LoginPage();
+                }
+            }
+        }
+        return instance;
+    }
+
     @AndroidFindBy(accessibility = "test-Username")
     private MobileElement usernameTxtFld;
 
@@ -33,7 +46,7 @@ public class LoginPage extends CommonActions {
         return this;
     }
 
-    public Homepage pressLoginBtn() {
+    public Homepage clickLoginBtn() {
         click(loginBtn, "Click login button");
         return new Homepage();
     }
@@ -41,12 +54,13 @@ public class LoginPage extends CommonActions {
     public Homepage login(String username, String password) throws InterruptedException {
         enterUserName(username);
         enterPassword(password);
-        return pressLoginBtn();
+        clickLoginBtn();
+        return new Homepage();
     }
 
-    public String getErrMsg() {
-        String err = getText(errorMsg, "error message is - ");
-        return err;
+    public String getErrMsg() throws Exception {
+        String error = getText(errorMsg, "error message is - ");
+        return error;
     }
 
 }

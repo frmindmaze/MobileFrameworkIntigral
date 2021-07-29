@@ -1,4 +1,3 @@
-@test
 Feature: Login scenarios
 
   Scenario Outline: Verify login with incorrect username
@@ -24,6 +23,7 @@ Feature: Login scenarios
     And user enter the password as <password>
     And user click on the login button
     Then verify homepage is displayed with title <title>
+    When user click on the Logout button
     Examples:
       | username | password | title |
       | standard_user | secret_sauce | PRODUCTS |

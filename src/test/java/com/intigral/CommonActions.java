@@ -6,11 +6,14 @@ import io.appium.java_client.*;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static io.appium.java_client.touch.offset.PointOption.point;
 import static java.time.Duration.ofMillis;
@@ -18,10 +21,13 @@ import static java.time.Duration.ofMillis;
 public class CommonActions {
     private AppiumDriver<?> driver;
     AppiumDriverUtil logger = new AppiumDriverUtil();
+    TouchActions action;
+
 
     public CommonActions() {
         this.driver = new AppiumDriverUtil().getDriver();
         PageFactory.initElements(new AppiumFieldDecorator(this.driver), this);
+
     }
 
     public void waitForVisibility(MobileElement e) {
@@ -77,8 +83,9 @@ public class CommonActions {
         return driver.findElement(e).getAttribute(attribute);
     }
 
-    public String getText(MobileElement e, String msg) {
+    public String getText(MobileElement e, String msg) throws Exception {
         String txt;
+        scrollToElement(e, "up");
         switch (new AppiumParams().getPlatformName()) {
             case "Android":
                 txt = getAttribute(e, "text");
