@@ -7,9 +7,13 @@ Appium mobile test framework build on top of the Cucumber framework using Java, 
 Appium has been adopted in the industry due to its wide range of features. Let us discuss the ones that bring Appium into the spotlight.
 
 1.Support Webdriver Protocol – Webdriver Protocol gives better control over web UI. Automation without interrupting with the JS running on the page. Appium still is backwards Compatible with the JSON Wire Protocol.
+
 2.Robust Test Execution – Appium can easily execute tests regardless of the device being locally available or being on a remote server. The tests can be monitored in real-time as well.
+
 3.Multi-Platform Support – Appium can execute test cases across multiple platforms. As of now, Appium supports Android, iOS and Windows applications.
+
 4.No need to Rebuild Application – Appium doesn’t reinstall the application being tested onto the system again and again. Neither does it need any access to the library or source code of the application.
+
 5.Parallel Execution – Appium enables users to execute test automation scripts on multiple Android or iOS sessions. This can be achieved using UIAutomator, UIAutomation and Xcode9
 
 #Tools Libraries and languages used to build this Framework:
