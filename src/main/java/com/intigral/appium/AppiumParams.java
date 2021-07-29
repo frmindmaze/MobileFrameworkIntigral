@@ -66,4 +66,22 @@ public class AppiumParams {
     public void setProxyPort(String setProxyPort) {
         ProxyPort.set(setProxyPort);
     }
+
+    public void initializeAppiumParams(){
+        AppiumParams params = new AppiumParams();
+        params.setPlatformName(System.getProperty("platformName", "Android"));
+        params.setUDID(System.getProperty("udid", "900f8d42"));
+        params.setDeviceName(System.getProperty("deviceName", "Xioami"));
+
+        switch(params.getPlatformName()){
+            case "Android":
+                params.setSystemPort(System.getProperty("systemPort", "10000"));
+                params.setChromePort(System.getProperty("chromeDriverPort", "11000"));
+                break;
+            case "iOS":
+                break;
+            default:
+                throw new IllegalStateException("Invalid Platform Name!");
+        }
+    }
 }

@@ -8,8 +8,11 @@ import io.appium.java_client.service.local.flags.GeneralServerFlag;
 
 public class AppiumServer {
 
+    //***setting up and initiating the Appium server ***//
+
+
     private static ThreadLocal<AppiumDriverLocalService> server = new ThreadLocal<>();
-    LoggerReport logger = new LoggerReport();
+    AppiumDriverUtil logger = new AppiumDriverUtil();
 
     public AppiumDriverLocalService getServer(){
         return server.get();
@@ -20,8 +23,8 @@ public class AppiumServer {
         AppiumDriverLocalService server = WindowsGetAppiumService();
         server.start();
         if(server == null || !server.isRunning()){
-            logger.log().fatal("Appium server not started. ABORT!!!");
-            throw new AppiumServerHasNotBeenStartedLocallyException("Appium server not started. ABORT!!!");
+            logger.log().fatal("Appium server failed to start");
+            throw new AppiumServerHasNotBeenStartedLocallyException("Appium server failed to start");
         }
         this.server.set(server);
         logger.log().info("Appium server started");

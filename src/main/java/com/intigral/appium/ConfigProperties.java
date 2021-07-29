@@ -5,8 +5,12 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigProperties {
+
+    //*** Class to read the config file***//
+
+
     private static Properties prop = new Properties();
-    LoggerReport logger = new LoggerReport();
+    AppiumDriverUtil logger = new AppiumDriverUtil();
 
     public Properties getProp() throws IOException {
         InputStream is = null;

@@ -9,10 +9,15 @@ import java.util.Properties;
 
 public class AppiumCapability {
 
+
+    //***setting up the capabilities based on the inputs from property file and appium params class ***//
+
+
+
     public DesiredCapabilities getCaps() throws IOException {
         AppiumParams params = new AppiumParams();
         Properties prop = new ConfigProperties().getProp();
-        LoggerReport logger = new LoggerReport();
+        AppiumDriverUtil logger = new AppiumDriverUtil();
         try {
             logger.log().info("getting capabilities");
             org.openqa.selenium.remote.DesiredCapabilities caps = new DesiredCapabilities();
@@ -27,9 +32,8 @@ public class AppiumCapability {
                     caps.setCapability("appActivity", prop.getProperty("androidAppActivity"));
                     caps.setCapability("systemPort", params.getSystemPort());
                     caps.setCapability("chromeDriverPort", params.getChromePort());
-                    //String androidAppUrl = getClass().getResource(props.getProperty("androidAppLocation")).getFile();
                     String androidAppUrl = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test"
-                            + File.separator + "resources" + File.separator + "mobileapps" + File.separator + prop.getProperty("Appname");
+                            + File.separator + "resources" + File.separator + "mobileapps" + File.separator + prop.getProperty("androidAppName");
                     logger.log().info("appUrl is" + androidAppUrl);
                     caps.setCapability("app", androidAppUrl);
                     break;
